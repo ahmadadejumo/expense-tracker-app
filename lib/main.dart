@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import './transaction.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -18,8 +19,22 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+  // const MyHomePage({Key? key}) : super(key: key);
 
+  final List<Transaction> transactions = [
+    Transaction(
+      id: "t1",
+      title: "New Books",
+      amount: 100,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: "t2",
+      title: "Transport Fare",
+      amount: 65.99,
+      date: DateTime.now(),
+    ),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,6 +42,8 @@ class MyHomePage extends StatelessWidget {
           title: Text("Flutter App"),
         ),
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
               width: double.infinity,
@@ -38,9 +55,13 @@ class MyHomePage extends StatelessWidget {
                 elevation: 5,
               ),
             ),
-            Card(
-              child: Text("List of TX"),
-            )
+            Column(
+              children: transactions.map((tx) {
+                return Card(
+                  child: Text(tx.title),
+                );
+              }).toList(),
+            ),
           ],
         ));
   }
