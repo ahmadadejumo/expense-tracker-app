@@ -40,7 +40,7 @@ class MyHomePage extends StatelessWidget {
               width: double.infinity,
               child: Card(
                 child: Container(
-                  color: Colors.blue,
+                  color: Colors.blueAccent,
                   child: Text("CHART!"),
                 ),
                 elevation: 5,
