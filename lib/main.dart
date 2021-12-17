@@ -1,4 +1,5 @@
 // ignore_for_file: prefer_const_constructors, deprecated_member_use
+import './widgets/Chart.dart';
 import './widgets/transaction_list.dart';
 import './widgets/new_transaction.dart';
 import 'package:flutter/material.dart';
@@ -44,18 +45,18 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   // const MyHomePage({Key? key}) : super(key: key);
   final List<Transaction> _userTransactions = [
-    // Transaction(
-    //   id: "t1",
-    //   title: "New Books",
-    //   amount: 100,
-    //   date: DateTime.now(),
-    // ),
-    // Transaction(
-    //   id: "t2",
-    //   title: "Transport Fare",
-    //   amount: 65.99,
-    //   date: DateTime.now(),
-    // ),
+    Transaction(
+      id: "t1",
+      title: "New Books",
+      amount: 100,
+      date: DateTime.now(),
+    ),
+    Transaction(
+      id: "t2",
+      title: "Transport Fare",
+      amount: 65.99,
+      date: DateTime.now(),
+    ),
   ];
 
   void _addNewTransactions(String txTitle, double txAmount) {
@@ -103,16 +104,7 @@ class _MyHomePageState extends State<MyHomePage> {
           // mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Container(
-              width: double.infinity,
-              child: Card(
-                child: Container(
-                  color: Theme.of(context).primaryColor,
-                  child: Text("CHART!"),
-                ),
-                elevation: 5,
-              ),
-            ),
+            Chart(),
             TransactionList(_userTransactions),
           ],
         ),
