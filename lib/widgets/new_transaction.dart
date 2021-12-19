@@ -17,14 +17,22 @@ class _NewTransactionState extends State<NewTransaction> {
   final _amountController = TextEditingController();
   var _selctedDate;
   void _submitData() {
-    final enteredTitle = _titleController.text;
-    final enteredAmount = double.parse(_amountController.text);
-
-    if (enteredTitle.isEmpty || enteredAmount <= 0) {
+    if (_amountController.text.isEmpty) {
       return;
     }
 
-    widget.addTx(enteredTitle, enteredAmount);
+    final enteredTitle = _titleController.text;
+    final enteredAmount = double.parse(_amountController.text);
+
+    if (enteredTitle.isEmpty || enteredAmount <= 0 || _selctedDate == null) {
+      return;
+    }
+
+    widget.addTx(
+      enteredTitle,
+      enteredAmount,
+      _selctedDate,
+    );
 
     Navigator.of(context).pop();
   }
