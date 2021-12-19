@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use, prefer_const_constructors, use_key_in_widget_constructors, unused_local_variable
+// ignore_for_file: deprecated_member_use, prefer_const_constructors, use_key_in_widget_constructors, unused_local_variable, prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
 
@@ -16,7 +16,7 @@ class _NewTransactionState extends State<NewTransaction> {
 
   final amountController = TextEditingController();
 
-  void submitData() {
+  void _submitData() {
     final enteredTitle = titleController.text;
     final enteredAmount = double.parse(amountController.text);
 
@@ -41,18 +41,35 @@ class _NewTransactionState extends State<NewTransaction> {
             TextField(
               decoration: InputDecoration(labelText: "Title"),
               controller: titleController,
-              onSubmitted: (_) => submitData(),
+              onSubmitted: (_) => _submitData(),
             ),
             TextField(
               decoration: InputDecoration(labelText: "Amount"),
               controller: amountController,
               keyboardType: TextInputType.number,
-              onSubmitted: (_) => submitData(),
+              onSubmitted: (_) => _submitData(),
             ),
-            FlatButton(
+            Container(
+              height: 70,
+              child: Row(
+                children: [
+                  Text("No date Chosen!"),
+                  FlatButton(
+                    onPressed: () {},
+                    child: Text(
+                      "Choose date",
+                      style: TextStyle(fontWeight: FontWeight.bold),
+                    ),
+                    textColor: Theme.of(context).primaryColor,
+                  )
+                ],
+              ),
+            ),
+            RaisedButton(
               child: Text("Add Transaction"),
-              textColor: Theme.of(context).primaryColor,
-              onPressed: submitData,
+              color: Theme.of(context).primaryColor,
+              textColor: Colors.white,
+              onPressed: _submitData,
             )
           ],
         ),
