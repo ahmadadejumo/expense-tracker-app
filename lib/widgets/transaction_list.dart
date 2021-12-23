@@ -1,5 +1,4 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables, use_key_in_widget_constructors, sized_box_for_whitespace
-
 import '../models/transaction.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -53,11 +52,18 @@ class TransactionList extends StatelessWidget {
                   subtitle: Text(
                     DateFormat.yMMMd().format(transactions[index].date),
                   ),
-                  trailing: IconButton(
-                    onPressed: () => deleteTx(transactions[index].id),
-                    icon: Icon(Icons.delete),
-                    color: Theme.of(context).errorColor,
-                  ),
+                  trailing: MediaQuery.of(context).size.width > 460
+                      ? FlatButton.icon(
+                          onPressed: () => deleteTx(transactions[index].id),
+                          icon: Icon(Icons.delete),
+                          label: Text("Delete"),
+                          textColor: Theme.of(context).errorColor,
+                        )
+                      : IconButton(
+                          onPressed: () => deleteTx(transactions[index].id),
+                          icon: Icon(Icons.delete),
+                          color: Theme.of(context).errorColor,
+                        ),
                 ),
               );
             },
